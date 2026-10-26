@@ -6,29 +6,6 @@
 Каждый из них вызывается из `Lesson22.main(String[] args)`, результат выводится в консоль.
 Класс `Main` также запускает это решение.
 
-## Запуск в IntelliJ IDEA
-
-1. Открыть папку репозитория `Aston_JavaQA_Kopanitsa` и выбрать ветку `Lesson_2.2`.
-2. Открыть **File → Project Structure → Project**. Выбрать **SDK 11** и **Language level 11**.
-   Если SDK отсутствует в списке, выбрать **Add SDK → JDK** и указать папку установленного JDK 11.
-   На компьютере, где выполнялось задание, это `C:\Users\PC-Gamer\.jdks\temurin-11.0.32.1+1`.
-3. Открыть `src/main/java/org/example/Lesson22.java`.
-4. Нажать зелёный треугольник рядом с `main()` и выбрать **Run 'Lesson22.main()'**.
-
-Для запуска Maven из IDEA также следует выбрать JDK 11 в настройках **Build Tools → Maven → Runner → JRE**.
-Сторонние библиотеки для решения не нужны.
-
-## Запуск через PowerShell
-
-Команды нужно выполнять из корня репозитория. При другом расположении Java заменить значение `$jdkPath`.
-
-```powershell
-$jdkPath = 'C:\Users\PC-Gamer\.jdks\temurin-11.0.32.1+1'
-New-Item -ItemType Directory -Force -Path target/classes | Out-Null
-& "$jdkPath/bin/javac.exe" -encoding UTF-8 --release 11 -d target/classes src/main/java/org/example/Lesson22.java src/main/java/org/example/Main.java
-& "$jdkPath/bin/java.exe" '-Dfile.encoding=UTF-8' -cp target/classes org.example.Lesson22
-```
-
 ## Соответствие заданию
 
 | № | Метод | Что делает |
