@@ -67,12 +67,4 @@ New-Item -ItemType Directory -Force -Path target/classes | Out-Null
 Сборка Maven `package` также выполнена успешно с JDK 11.
 
 Полный фактический вывод программы на Java 11 сохранён в [docs/lesson-2.2-output.txt](docs/lesson-2.2-output.txt).
-
-## Ссылка для преподавателя
-
-Отправить ссылку именно на ветку с решением:
-
-https://github.com/ORKcomi/Aston_JavaQA_Kopanitsa/tree/Lesson_2.2
-
-Дополнительные материалы по теме: [официальный учебник Java — управляющие конструкции](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/flow.html),
 [массивы](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html).
