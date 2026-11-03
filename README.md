@@ -73,30 +73,9 @@
 
 ## Запуск
 
-1. Открыть проект в IntelliJ IDEA и выбрать ветку `Lesson_2.4`.
-2. В **File → Project Structure → Project** выбрать JDK 11 и Language level 11.
-3. Открыть `src/main/java/org/example/Lesson24.java`.
-4. Нажать зелёный треугольник рядом с `main()` и выбрать **Run 'Lesson24.main()'**.
-
-JDK 11 на компьютере, где выполнялось задание: `C:\Users\PC-Gamer\.jdks\temurin-11.0.32.1+1`.
-Если SDK отсутствует в списке, добавить эту папку через **Add SDK → JDK**.
-
-Запуск через PowerShell из корня проекта:
-
-```powershell
-$jdkPath = 'C:\Users\PC-Gamer\.jdks\temurin-11.0.32.1+1'
-New-Item -ItemType Directory -Force -Path target/classes | Out-Null
-$sourceFiles = Get-ChildItem src/main/java -Recurse -Filter *.java | Select-Object -ExpandProperty FullName
-& "$jdkPath/bin/javac.exe" -encoding UTF-8 --release 11 -d target/classes $sourceFiles
-& "$jdkPath/bin/java.exe" '-Dfile.encoding=UTF-8' -cp target/classes org.example.Lesson24
-```
-
 Фактический результат запуска: [docs/lesson-2.4-output.txt](docs/lesson-2.4-output.txt).
 
 Проверены компиляция и запуск на JDK 11, а также сборка Maven `package`.
 Дополнительно проверены границы дистанций, счётчики, кормление без частичного расхода еды,
 пополнение миски, формулы фигур и использование `default`-методов интерфейсов.
 
-## Ссылка для сдачи
-
-[Ветка Lesson_2.4 с решением](https://github.com/ORKcomi/Aston_JavaQA_Kopanitsa/tree/Lesson_2.4)
