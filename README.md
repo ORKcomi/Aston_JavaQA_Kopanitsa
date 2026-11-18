@@ -1,8 +1,5 @@
 # Домашнее задание 2.7 — JUnit 5
 
-Ветка: `Lesson_7_junit_5`. Java 11. В проекте находится только задание 2.7.
-Четыре программы одинаковы в обеих ветках; в этой ветке тесты написаны на **JUnit 5 5.13.4**.
-
 ## Программы
 
 Исходники: `src/main/java/org/example/lesson27/`.
@@ -35,23 +32,5 @@
 
 Проверено на JDK 11: **68 тестов, 0 failures, 0 errors, 0 skipped**.
 Фреймворк запускается через Maven Surefire 3.5.4. Результаты нового запуска появятся в `target/surefire-reports/`.
-
-## Запуск
-
-Нужны JDK 11 и Maven. Выполнить из корня проекта:
-
-```text
-mvn test
-```
-
-Запустить демонстрацию после компиляции:
-
-```text
-mvn compile
-java -Dfile.encoding=UTF-8 -cp target/classes org.example.Main
-```
-
-В IntelliJ IDEA открыть `pom.xml`, выбрать JDK 11 и дождаться загрузки зависимостей Maven.
-Для тестов запустить весь каталог `src/test/java` или отдельный тестовый класс; для демонстрации — `Main.main()`.
 
 Документация фреймворка: [JUnit 5](https://docs.junit.org/5.13.4/user-guide/).
