@@ -1,0 +1,643 @@
+{
+  "info": {
+    "_postman_id": "0652bb26-59bc-4614-bcea-8ea490e98dc7",
+    "name": "Aston Lesson 2.8 — Postman Echo",
+    "description": "Request Methods from the official Postman Echo collection (631643-f695cab7-6878-eb55-7943-ad88e1ccfd65). Request methods, URLs, query parameters and request bodies are preserved. The original scripts and saved examples are replaced for Lesson 2.8. Cookies and generated Postman-Token/Cache-Control headers are disabled so that the complete echoed JSON remains deterministic.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Request Methods",
+      "item": [
+        {
+          "name": "GET Request",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "get"
+              ],
+              "query": [
+                {
+                  "key": "foo1",
+                  "value": "bar1",
+                  "type": "text"
+                },
+                {
+                  "key": "foo2",
+                  "value": "bar2",
+                  "type": "text"
+                }
+              ]
+            },
+            "description": "The HTTP `GET` request method is meant to retrieve data from a server. The data  \nis identified by a unique URI (Uniform Resource Identifier).\n\nA `GET` request can pass parameters to the server using \"Query String  \nParameters\". For example, in the following request,\n\n> [http://example.com/hi/there?hand=wave](http://example.com/hi/there?hand=wave) \n  \n\nThe parameter \"hand\" has the value \"wave\".\n\nThis endpoint echoes the HTTP headers, request parameters and the complete  \nURI requested."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        headers: expectedHeaders,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Raw Text",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain; charset=UTF-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"test\": \"value\"\n}"
+            },
+            "url": {
+              "raw": "https://postman-echo.com/post",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "post"
+              ]
+            },
+            "description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested."
+          },
+          "response": [],
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const requestBody = pm.request.body.raw;",
+                  "    const CryptoJS = require(\"crypto-js\");",
+                  "    expectedHeaders[\"content-type\"] = pm.request.headers.get(\"Content-Type\");",
+                  "    expectedHeaders[\"content-length\"] = String(CryptoJS.enc.Utf8.parse(requestBody).sigBytes);",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        data: requestBody,",
+                  "        files: {},",
+                  "        form: {},",
+                  "        headers: expectedHeaders,",
+                  "        json: null,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "POST Form Data",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded; charset=UTF-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "foo1",
+                  "value": "bar1",
+                  "type": "text"
+                },
+                {
+                  "key": "foo2",
+                  "value": "bar2",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "https://postman-echo.com/post",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "post"
+              ]
+            },
+            "description": "The HTTP `POST` request method is meant to transfer data to a server \n(and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `POST` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following request,\n\n> POST /hi/there?hand=wave\n>\n> <request-body>\n\nThe parameter \"hand\" has the value \"wave\". The request body can be in multiple\nformats. These formats are defined by the MIME type of the request. The MIME \nType can be set using the ``Content-Type`` HTTP header. The most commonly used \nMIME types are:\n\n* `multipart/form-data`\n* `application/x-www-form-urlencoded`\n* `application/json`\n\nThis endpoint echoes the HTTP headers, request parameters, the contents of\nthe request body and the complete URI requested when data is sent as a form parameter."
+          },
+          "response": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const fields = pm.request.body.urlencoded.all().filter(function (field) {",
+                  "        return !field.disabled;",
+                  "    });",
+                  "    const expectedForm = {};",
+                  "    fields.forEach(function (field) {",
+                  "        expectedForm[field.key] = field.value;",
+                  "    });",
+                  "    const requestBody = fields.map(function (field) {",
+                  "        return encodeURIComponent(field.key).replace(/%20/g, \"+\") + \"=\" +",
+                  "            encodeURIComponent(field.value).replace(/%20/g, \"+\");",
+                  "    }).join(\"&\");",
+                  "    const CryptoJS = require(\"crypto-js\");",
+                  "    expectedHeaders[\"content-type\"] = pm.request.headers.get(\"Content-Type\");",
+                  "    expectedHeaders[\"content-length\"] = String(CryptoJS.enc.Utf8.parse(requestBody).sigBytes);",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        data: \"\",",
+                  "        files: {},",
+                  "        form: expectedForm,",
+                  "        headers: expectedHeaders,",
+                  "        json: expectedForm,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PUT Request",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain; charset=UTF-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "This is expected to be sent back as part of response body."
+            },
+            "url": {
+              "raw": "https://postman-echo.com/put",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "put"
+              ]
+            },
+            "description": "The HTTP `PUT` request method is similar to HTTP `POST`. It too is meant to \ntransfer data to a server (and elicit a response). What data is returned depends on the implementation\nof the server.\n\nA `PUT` request can pass parameters to the server using \"Query String \nParameters\", as well as the Request Body. For example, in the following \nraw HTTP request,\n\n> PUT /hi/there?hand=wave\n>\n> <request-body>\n\n\n"
+          },
+          "response": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const requestBody = pm.request.body.raw;",
+                  "    const CryptoJS = require(\"crypto-js\");",
+                  "    expectedHeaders[\"content-type\"] = pm.request.headers.get(\"Content-Type\");",
+                  "    expectedHeaders[\"content-length\"] = String(CryptoJS.enc.Utf8.parse(requestBody).sigBytes);",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        data: requestBody,",
+                  "        files: {},",
+                  "        form: {},",
+                  "        headers: expectedHeaders,",
+                  "        json: null,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "PATCH Request",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain; charset=UTF-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "This is expected to be sent back as part of response body."
+            },
+            "url": {
+              "raw": "https://postman-echo.com/patch",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "patch"
+              ]
+            },
+            "description": "The HTTP `PATCH` method is used to update resources on a server. The exact\nuse of `PATCH` requests depends on the server in question. There are a number\nof server implementations which handle `PATCH` differently. Technically, \n`PATCH` supports both Query String parameters and a Request Body.\n\nThis endpoint accepts an HTTP `PATCH` request and provides debug information\nsuch as the HTTP headers, Query String arguments, and the Request Body."
+          },
+          "response": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const requestBody = pm.request.body.raw;",
+                  "    const CryptoJS = require(\"crypto-js\");",
+                  "    expectedHeaders[\"content-type\"] = pm.request.headers.get(\"Content-Type\");",
+                  "    expectedHeaders[\"content-length\"] = String(CryptoJS.enc.Utf8.parse(requestBody).sigBytes);",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        data: requestBody,",
+                  "        files: {},",
+                  "        form: {},",
+                  "        headers: expectedHeaders,",
+                  "        json: null,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "DELETE Request",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "User-Agent",
+                "value": "Aston-Lesson-2.8/1.0",
+                "type": "text"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Accept-Encoding",
+                "value": "identity",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "text/plain; charset=UTF-8",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "This is expected to be sent back as part of response body."
+            },
+            "url": {
+              "raw": "https://postman-echo.com/delete",
+              "protocol": "https",
+              "host": [
+                "postman-echo",
+                "com"
+              ],
+              "path": [
+                "delete"
+              ]
+            },
+            "description": "The HTTP `DELETE` method is used to delete resources on a server. The exact\nuse of `DELETE` requests depends on the server implementation. In general, \n`DELETE` requests support both, Query String parameters as well as a Request \nBody.\n\nThis endpoint accepts an HTTP `DELETE` request and provides debug information\nsuch as the HTTP headers, Query String arguments, and the Request Body."
+          },
+          "response": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true,
+            "disabledSystemHeaders": {
+              "cache-control": true,
+              "postman-token": true,
+              "connection": true
+            },
+            "disableCookies": true
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test(\"Status code is 200\", function () {",
+                  "    pm.response.to.have.status(200);",
+                  "});",
+                  "",
+                  "pm.test(\"The complete response JSON matches the request\", function () {",
+                  "    const expectedArgs = {};",
+                  "    pm.request.url.query.each(function (parameter) {",
+                  "        if (!parameter.disabled) {",
+                  "            expectedArgs[parameter.key] = parameter.value;",
+                  "        }",
+                  "    });",
+                  "",
+                  "    const expectedHeaders = {",
+                  "        \"host\": pm.request.url.getHost(),",
+                  "        \"user-agent\": pm.request.headers.get(\"User-Agent\"),",
+                  "        \"accept\": pm.request.headers.get(\"Accept\"),",
+                  "        // Postman Echo is behind Cloudflare, which rewrites Accept-Encoding.",
+                  "        \"accept-encoding\": \"gzip, br\",",
+                  "        \"x-forwarded-proto\": pm.request.url.protocol",
+                  "    };",
+                  "",
+                  "    const requestBody = pm.request.body.raw;",
+                  "    const CryptoJS = require(\"crypto-js\");",
+                  "    expectedHeaders[\"content-type\"] = pm.request.headers.get(\"Content-Type\");",
+                  "    expectedHeaders[\"content-length\"] = String(CryptoJS.enc.Utf8.parse(requestBody).sigBytes);",
+                  "",
+                  "    const expected = {",
+                  "        args: expectedArgs,",
+                  "        data: requestBody,",
+                  "        files: {},",
+                  "        form: {},",
+                  "        headers: expectedHeaders,",
+                  "        json: null,",
+                  "        url: pm.request.url.toString()",
+                  "    };",
+                  "",
+                  "    pm.expect(pm.response.json()).to.deep.equal(expected);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "description": "HTTP has multiple request \"verbs\", such as `GET`, `PUT`, `POST`, `DELETE`,  \n`PATCH`, `HEAD`, etc.\n\nAn HTTP Method (verb) defines how a request should be interpreted by a server.  \nThe endpoints in this section demonstrate various HTTP Verbs. Postman supports  \nall the HTTP Verbs, including some rarely used ones, such as `PROPFIND`, `UNLINK`,  \netc.\n\nFor details about HTTP Verbs, refer to [RFC 2616](http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9)"
+    }
+  ]
+}

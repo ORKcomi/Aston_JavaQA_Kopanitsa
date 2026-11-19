@@ -1,0 +1,143 @@
+[
+  {
+    "name": "GET Request",
+    "method": "GET",
+    "url": "https://postman-echo.com/get?foo1=bar1&foo2=bar2",
+    "statusCode": 200,
+    "body": {
+      "args": {
+        "foo1": "bar1",
+        "foo2": "bar2"
+      },
+      "headers": {
+        "host": "postman-echo.com",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "x-forwarded-proto": "https"
+      },
+      "url": "https://postman-echo.com/get?foo1=bar1&foo2=bar2"
+    }
+  },
+  {
+    "name": "POST Raw Text",
+    "method": "POST",
+    "url": "https://postman-echo.com/post",
+    "statusCode": 200,
+    "body": {
+      "args": {},
+      "data": "{\n    \"test\": \"value\"\n}",
+      "files": {},
+      "form": {},
+      "headers": {
+        "host": "postman-echo.com",
+        "content-type": "text/plain; charset=UTF-8",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "content-length": "23",
+        "x-forwarded-proto": "https"
+      },
+      "json": null,
+      "url": "https://postman-echo.com/post"
+    }
+  },
+  {
+    "name": "POST Form Data",
+    "method": "POST",
+    "url": "https://postman-echo.com/post",
+    "statusCode": 200,
+    "body": {
+      "args": {},
+      "data": "",
+      "files": {},
+      "form": {
+        "foo1": "bar1",
+        "foo2": "bar2"
+      },
+      "headers": {
+        "host": "postman-echo.com",
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "content-length": "19",
+        "x-forwarded-proto": "https"
+      },
+      "json": {
+        "foo1": "bar1",
+        "foo2": "bar2"
+      },
+      "url": "https://postman-echo.com/post"
+    }
+  },
+  {
+    "name": "PUT Request",
+    "method": "PUT",
+    "url": "https://postman-echo.com/put",
+    "statusCode": 200,
+    "body": {
+      "args": {},
+      "data": "This is expected to be sent back as part of response body.",
+      "files": {},
+      "form": {},
+      "headers": {
+        "host": "postman-echo.com",
+        "content-type": "text/plain; charset=UTF-8",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "content-length": "58",
+        "x-forwarded-proto": "https"
+      },
+      "json": null,
+      "url": "https://postman-echo.com/put"
+    }
+  },
+  {
+    "name": "PATCH Request",
+    "method": "PATCH",
+    "url": "https://postman-echo.com/patch",
+    "statusCode": 200,
+    "body": {
+      "args": {},
+      "data": "This is expected to be sent back as part of response body.",
+      "files": {},
+      "form": {},
+      "headers": {
+        "host": "postman-echo.com",
+        "content-type": "text/plain; charset=UTF-8",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "content-length": "58",
+        "x-forwarded-proto": "https"
+      },
+      "json": null,
+      "url": "https://postman-echo.com/patch"
+    }
+  },
+  {
+    "name": "DELETE Request",
+    "method": "DELETE",
+    "url": "https://postman-echo.com/delete",
+    "statusCode": 200,
+    "body": {
+      "args": {},
+      "data": "This is expected to be sent back as part of response body.",
+      "files": {},
+      "form": {},
+      "headers": {
+        "host": "postman-echo.com",
+        "content-type": "text/plain; charset=UTF-8",
+        "accept-encoding": "gzip, br",
+        "accept": "application/json",
+        "user-agent": "Aston-Lesson-2.8/1.0",
+        "content-length": "58",
+        "x-forwarded-proto": "https"
+      },
+      "json": null,
+      "url": "https://postman-echo.com/delete"
+    }
+  }
+]

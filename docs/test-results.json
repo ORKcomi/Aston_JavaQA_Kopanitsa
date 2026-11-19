@@ -1,0 +1,20 @@
+{
+  "checkedOn": "2026-11-19",
+  "javaVersion": "11.0.32.1",
+  "restAssuredVersion": "5.5.6",
+  "junitVersion": "5.13.4",
+  "mavenTests": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "newmanVersion": "6.2.1",
+  "newmanRequests": 6,
+  "newmanAssertions": 12,
+  "newmanFailures": 0,
+  "sourceCollectionUid": "631643-f695cab7-6878-eb55-7943-ad88e1ccfd65",
+  "sourceExportUrl": "https://www.postman.com/_api/collection/631643-f695cab7-6878-eb55-7943-ad88e1ccfd65?populate=true&format=2.1.0",
+  "sourceExportSha256": "86f7e55352b2470464bd6ce28c490223024ed2697bf47444377931c98d97fdc2",
+  "responseBodiesMatchBetweenJavaAndNewman": true
+}
